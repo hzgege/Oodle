@@ -1,4 +1,4 @@
-package application;
+package ui;
 	
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class Main extends Application {
         try {
             // Read file fxml and draw interface.
             Parent root = FXMLLoader.load(getClass()
-                    .getResource("/application/OODLEScene.fxml"));
+                    .getResource("/ui/OODLEScene.fxml"));
             primaryStage.setTitle("目錄查看及擴展");
             primaryStage.setScene(new Scene(root));
             primaryStage.getIcons().add(new Image("/icon.jpg"));

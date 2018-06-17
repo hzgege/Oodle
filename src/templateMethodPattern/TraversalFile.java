@@ -11,11 +11,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-import oodleOperate.FileConversion;
+import oodleOperate.FileConvert;
 import oodleOperate.MyDir;
 import oodleOperate.MyFile;
 
-public class TraversalFile extends ABSTemplate{
+public class TraversalFile extends AbsTemplate{
 
 	@Override
 	public void cal(String path) {
@@ -27,10 +27,10 @@ public class TraversalFile extends ABSTemplate{
 		if (files != null) {
 			for (File f : files) {
 				if (f.isFile()) {
-					MyFile MF = FileConversion.getMyFile(f);
+					MyFile MF = FileConvert.getMyFile(f);
 					listFile.add(MF);
 				} else {
-					MyDir MD = FileConversion.getMyDir(f);
+					MyDir MD = FileConvert.getMyDir(f);
 					listFile.add(MD);
 					explore(f.getAbsolutePath());
 				}

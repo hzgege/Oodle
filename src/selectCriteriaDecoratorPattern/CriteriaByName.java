@@ -2,7 +2,7 @@ package selectCriteriaDecoratorPattern;
 
 import java.io.File;
 
-import application.MyController;
+import ui.Controller;
 
 public class CriteriaByName extends Decorator{
 

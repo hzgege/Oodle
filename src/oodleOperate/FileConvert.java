@@ -3,7 +3,7 @@ package oodleOperate;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class FileConversion {
+public class FileConvert {
 
 	public static MyFile getMyFile(File file){
 

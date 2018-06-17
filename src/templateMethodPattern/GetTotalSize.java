@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 分配线程计算每个目录下的文件大小，计算结束后将值插入阻塞队列 随后循环读取阻塞队列的所有值累加，直到子目录遍历完毕
  */
-public class GetTotalSize extends ABSTemplate{
+public class GetTotalSize extends AbsTemplate{
 
 	@Override
 	public void cal(String path) {

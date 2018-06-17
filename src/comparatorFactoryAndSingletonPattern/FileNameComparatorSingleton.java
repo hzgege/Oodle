@@ -1,19 +1,25 @@
-package comparatorFactoryPattern;
+package comparatorFactoryAndSingletonPattern;
 
 import java.util.Comparator;
 
 import oodleOperate.MyDir;
 import oodleOperate.MyFile;
 
-public class FileNameComparator implements Comparator<MyFile>{
+public class FileNameComparatorSingleton implements Comparator<MyFile>{
 	
 	private boolean flag = true;
-	public FileNameComparator(String upOrDown) {
-		// TODO Auto-generated constructor stub
-		if(upOrDown == "DESC")
+	private static FileNameComparatorSingleton singleton = new FileNameComparatorSingleton(); 
+	
+	private FileNameComparatorSingleton() {
+		
+	}
+	
+	public static FileNameComparatorSingleton getSingleton(String sortway){
+		if(sortway == "DESC")
 		{
-			flag = false;
+			singleton.flag = false;
 		}
+		return singleton;
 	}
 	
 	//"文件名比较"

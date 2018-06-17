@@ -1,19 +1,25 @@
-package comparatorFactoryPattern;
+package comparatorFactoryAndSingletonPattern;
 
 import java.util.Comparator;
 
 import oodleOperate.MyDir;
 import oodleOperate.MyFile;
 
-public class FileLastModifyTimeComparator implements Comparator<MyFile> {
+public class FileLastModifyTimeComparatorSingleton implements Comparator<MyFile> {
 
 	private boolean flag = true;
-	public FileLastModifyTimeComparator(String upOrDown) {
-		// TODO Auto-generated constructor stub
-		if(upOrDown == "DESC")
+	private static FileLastModifyTimeComparatorSingleton singleton = new FileLastModifyTimeComparatorSingleton(); 
+	
+	private FileLastModifyTimeComparatorSingleton() {
+		
+	}
+	
+	public static FileLastModifyTimeComparatorSingleton getSingleton(String sortway){
+		if(sortway == "DESC")
 		{
-			flag = false;
+			singleton.flag = false;
 		}
+		return singleton;
 	}
 	
     //"文件修改时间比较"
@@ -44,4 +50,6 @@ public class FileLastModifyTimeComparator implements Comparator<MyFile> {
     	}
         
     }
+
+
 }

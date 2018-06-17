@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import oodleOperate.MyFile;
 import readAndWriteProxyPattern.ReadandWriteProxy;
+import templateMethodPattern.AbsTemplate;
 import templateMethodPattern.TraversalFile;
 
 public class LogMode implements Mode{
@@ -14,7 +15,7 @@ public class LogMode implements Mode{
 	public String doMode(String path) {
 		
 		ConcurrentHashMap<String, List<MyFile>> LogMap = null;
-		TraversalFile TF = new TraversalFile();
+		AbsTemplate TF = new TraversalFile();
 		//递归遍历
 		try {
 			LogMap = (ConcurrentHashMap<String, List<MyFile>>) TF.getResult(path, new ConcurrentHashMap<String, List<MyFile>>());

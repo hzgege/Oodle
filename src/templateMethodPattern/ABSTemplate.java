@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
 
 
-public abstract class ABSTemplate {
+public abstract class AbsTemplate {
 
 	protected ExecutorService service;
 	final protected BlockingQueue<Object> fileQueue = new ArrayBlockingQueue<Object>(500);

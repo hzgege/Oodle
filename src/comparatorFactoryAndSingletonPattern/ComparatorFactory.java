@@ -1,4 +1,4 @@
-package comparatorFactoryPattern;
+package comparatorFactoryAndSingletonPattern;
 
 import java.util.Comparator;
 
@@ -11,22 +11,22 @@ public class ComparatorFactory {
 		// 排序方式
 		switch (sortType) {
 		case "按文件名升序":
-			comparator = new FileNameComparator("ESC");
+			comparator = FileNameComparatorSingleton.getSingleton("ESC");
 			break;
 		case "按文件名降序":
-			comparator = new FileNameComparator("DESC");
+			comparator = FileNameComparatorSingleton.getSingleton("DESC");
 			break;
 		case "按文件大小升序":
-			comparator = new FileSizeComparator("ESC");
+			comparator = FileSizeComparatorSingleton.getSingleton("ESC");
 			break;
 		case "按文件大小降序":
-			comparator = new FileSizeComparator("DESC");
+			comparator = FileSizeComparatorSingleton.getSingleton("DESC");
 			break;
 		case "按修改时间升序":
-			comparator = new FileLastModifyTimeComparator("ESC");
+			comparator = FileLastModifyTimeComparatorSingleton.getSingleton("ESC");
 			break;
 		case "按修改时间降序":
-			comparator = new FileLastModifyTimeComparator("DESC");
+			comparator = FileLastModifyTimeComparatorSingleton.getSingleton("DESC");
 			break;
 		default:
 			break;

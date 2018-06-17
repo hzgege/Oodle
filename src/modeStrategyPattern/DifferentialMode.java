@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import oodleOperate.MyDir;
 import oodleOperate.MyFile;
 import readAndWriteProxyPattern.ReadandWriteProxy;
+import templateMethodPattern.AbsTemplate;
 import templateMethodPattern.TraversalFile;
 
 public class DifferentialMode implements Mode{
@@ -110,7 +110,7 @@ public class DifferentialMode implements Mode{
 	@Override
 	public String doMode(String path) {
 		clearAll();
-		TraversalFile TF = new TraversalFile();
+		AbsTemplate TF = new TraversalFile();
 		//递归遍历
 		try {
 			NowMap = (ConcurrentHashMap<String, List<MyFile>>) TF.getResult(path, new ConcurrentHashMap<String, List<MyFile>>());

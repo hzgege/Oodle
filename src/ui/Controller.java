@@ -1,4 +1,4 @@
-package application;
+package ui;
 
 import java.io.File;
 import java.net.URL;
@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-import comparatorFactoryPattern.ComparatorFactory;
+import comparatorFactoryAndSingletonPattern.ComparatorFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -37,12 +37,20 @@ import selectCriteriaDecoratorPattern.CriteriaByLastModifyTime;
 import selectCriteriaDecoratorPattern.CriteriaByName;
 import selectCriteriaDecoratorPattern.CriteriaBySize;
 import selectCriteriaDecoratorPattern.SelectCriteria;
+import templateMethodPattern.AbsTemplate;
 import templateMethodPattern.GetTotalSize;
 
-public class MyController implements Initializable {
+public class Controller implements Initializable {
 
 	private ObservableList<MyFile> tablelist = FXCollections.observableArrayList();
 	private ComparatorFactory comparatorFac = new ComparatorFactory();
+	private AbsTemplate absTemplate = new GetTotalSize();
+	//右键弹出 获取文件夹大小的按钮
+	private ContextMenu cm = null;
+	private MenuItem menuItem = null;
+	private DoScandir ds = new DoScandir();
+	private List<MyFile> resultList = new ArrayList<>();
+	
 	@FXML
 	private Button myButton;
 	@FXML
@@ -59,11 +67,6 @@ public class MyController implements Initializable {
 	private ComboBox<String> sortway;
 	
 	
-	//右键弹出 获取文件夹大小的按钮
-	final ContextMenu cm = new ContextMenu();
-	private MenuItem viewSizeItem = new MenuItem("View Size");
-	DoScandir ds = new DoScandir();
-	List<MyFile> list = new ArrayList<>();
 	
 	//combobx的排序方式列表
 	final static ObservableList<String> options =   
@@ -83,23 +86,16 @@ public class MyController implements Initializable {
 		initComboBox();
 	}
 
-	public void initComboBox(){
+	private void initComboBox(){
 		sortway.getItems().addAll(options);
 		sortway.setValue(options.get(0));
 	}
 	
-	public void cliclCombobox(){
-		sortway.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-			@Override
-			public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-				showAtTableView(currentDir.getText());
-			}
-		});
-	}
-	
 	// 初始化tableview的右键弹出菜单
-	public void initViewSizeMenu() {
-		cm.getItems().add(viewSizeItem);
+	private void initViewSizeMenu() {
+		cm = new ContextMenu();
+		menuItem = new MenuItem();
+		cm.getItems().add(menuItem);
 	}
 
 	// 初始化tableView的列
@@ -139,11 +135,11 @@ public class MyController implements Initializable {
 					if (tempFile != null && tempFile.getClass() == MyDir.class) {
 						cm.show(tableview, event.getScreenX(), event.getScreenY());
 					}
-					viewSizeItem.setOnAction((ActionEvent e) -> {
+					menuItem.setOnAction((ActionEvent e) -> {
 						long tempFileSize = 0;
 						String tempSize = "0 KB";
 						try {
-							tempFileSize = (long) new GetTotalSize().getResult(tempFile.getPath(), (long)0);
+							tempFileSize = (long) absTemplate.getResult(tempFile.getPath(), (long)0);
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
@@ -165,7 +161,17 @@ public class MyController implements Initializable {
 			}
 		});
 	}
-
+	
+	// 排序方式修改的监听
+	public void cliclCombobox(){
+		sortway.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+			@Override
+			public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+				showAtTableView(currentDir.getText());
+			}
+		});
+	}
+	
 	// 点击<按钮时调用,修改上方文本框路径,修改下方tableview
 	public void clickBack(ActionEvent event) {
 		String path = currentDir.getText();
@@ -280,7 +286,7 @@ public class MyController implements Initializable {
 				success.showAndWait();
 			}else{
 				//成功的时候显示结果
-				new ShowDiff().display(DifferentialMode.getNewFile(), DifferentialMode.getDeleteFile(),
+				new ShowDiffUI().display(DifferentialMode.getNewFile(), DifferentialMode.getDeleteFile(),
 						DifferentialMode.getFileNewInfo(), DifferentialMode.getFileOldInfo());
 			}
 		} catch (InterruptedException | ExecutionException e) {
@@ -289,7 +295,7 @@ public class MyController implements Initializable {
 	}
 
 	//获得文件名匹配值
-	public String[] getFileTextName(){
+	private String[] getFileTextName(){
 		String[] nameArr = new String[1];
 		if(filenametext.getText() != null && filenametext.getText().compareTo("") != 0){
 			nameArr[0] =  filenametext.getText();
@@ -298,7 +304,7 @@ public class MyController implements Initializable {
 	}
 	
 	//获得大小范围
-	public String[] getSizeRange() {
+	private String[] getSizeRange() {
 		String[] strArr = new String[2];
 		if(kbfloor.getText() != null && kbfloor.getText().compareTo("") != 0){
 			strArr[0] = kbfloor.getText();
@@ -310,7 +316,7 @@ public class MyController implements Initializable {
 	}
 	
 	//获得时间范围
-	public String[] getTimeRange() {
+	private String[] getTimeRange() {
 		String[] strArr = new String[2];
 		if(datebegin.getValue() != null){
 			strArr[0] = datebegin.getValue().toString();
@@ -326,7 +332,7 @@ public class MyController implements Initializable {
 		if (path == null || path.equals("") || path.equals(System.getenv("COMPUTERNAME")))
 			return;
 		tablelist.clear();
-		list.clear();
+		resultList.clear();
 		// 调用Scandir
 		// 获取排序方式
 		String sortWayString = sortway.getSelectionModel().getSelectedItem();
@@ -348,9 +354,9 @@ public class MyController implements Initializable {
 		if(sizeArr[0] != null || sizeArr[1] != null)
 			concreteSC = new CriteriaBySize(concreteSC, sizeArr);
 		
-		ds.scandir(path, list, concreteSC, comparator);
+		ds.scandir(path, resultList, concreteSC, comparator);
 		// 将读到的Scandir显示到tableview
-		for (MyFile l : list) {
+		for (MyFile l : resultList) {
 			tablelist.add(l);
 		}
 		tableview.setItems(tablelist);

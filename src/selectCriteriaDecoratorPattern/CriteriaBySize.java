@@ -2,8 +2,8 @@ package selectCriteriaDecoratorPattern;
 
 import java.io.File;
 
-import application.MyController;
 import oodleOperate.MyFile;
+import ui.Controller;
 
 public class CriteriaBySize extends Decorator{
 

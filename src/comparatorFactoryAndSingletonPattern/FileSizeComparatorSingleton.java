@@ -1,19 +1,25 @@
-package comparatorFactoryPattern;
+package comparatorFactoryAndSingletonPattern;
 
 import java.util.Comparator;
 
 import oodleOperate.MyDir;
 import oodleOperate.MyFile;
 
-public class FileSizeComparator implements Comparator<MyFile> {
+public class FileSizeComparatorSingleton implements Comparator<MyFile> {
 
 	private boolean flag = true;
-	public FileSizeComparator(String upOrDown) {
-		// TODO Auto-generated constructor stub
-		if(upOrDown == "DESC")
+	private static FileSizeComparatorSingleton singleton = new FileSizeComparatorSingleton();
+	
+	private FileSizeComparatorSingleton() {
+		
+	}
+	
+	public static FileSizeComparatorSingleton getSingleton(String sortway){
+		if(sortway == "DESC")
 		{
-			flag = false;
+			singleton.flag = false;
 		}
+		return singleton;
 	}
 	
     //"文件大小比较"

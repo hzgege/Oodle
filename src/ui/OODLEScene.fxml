@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="545.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MyController" stylesheets="@application.css">
+<AnchorPane prefHeight="545.0" prefWidth="780.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Controller">
    <children>
       <TextField fx:id="currentDir" layoutX="69.0" layoutY="22.0" prefHeight="23.0" prefWidth="528.0" />
       <Button id="search" layoutX="687.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickSearch" text="search" />
@@ -24,14 +25,17 @@
       <Button id="diffMode" layoutX="629.0" layoutY="493.0" mnemonicParsing="false" onAction="#clickDiff" text="差异模式" />
       <Button id="chooseFile" layoutX="619.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickChoose" text="choose" />
       <Button id="back" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" onAction="#clickBack" text="&lt;" />
-      <Label id="setcri" layoutX="12.0" layoutY="105.0" text="设置谓词：" />
-      <Label id="filenamelabel" layoutX="24.0" layoutY="128.0" text="文件名匹配" />
-      <TextField fx:id="filenametext" layoutX="17.0" layoutY="143.0" prefHeight="23.0" prefWidth="150.0" />
-      <Label id="sizekb" layoutX="18.0" layoutY="183.0" text="文件大小(KB)" />
+      <Label id="setcri" layoutX="10.0" layoutY="101.0" text="设置谓词：">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
+      <Label id="filenamelabel" layoutX="9.0" layoutY="129.0" text="文件名匹配：" />
+      <TextField fx:id="filenametext" layoutX="16.0" layoutY="154.0" prefHeight="23.0" prefWidth="150.0" />
+      <Label id="sizekb" layoutX="10.0" layoutY="185.0" text="文件大小(KB)：" />
       <TextField fx:id="kbfloor" layoutX="60.0" layoutY="207.0" prefHeight="23.0" prefWidth="110.0" />
       <TextField fx:id="kbceiling" layoutX="60.0" layoutY="247.0" prefHeight="23.0" prefWidth="110.0" />
       <DatePicker fx:id="datebegin" layoutX="9.0" layoutY="341.0" prefHeight="23.0" prefWidth="170.0" />
-      <Label id="datelabel" layoutX="16.0" layoutY="285.0" text="日期范围" />
+      <Label id="datelabel" layoutX="10.0" layoutY="290.0" text="日期范围：" />
       <ComboBox fx:id="sortway" layoutX="16.0" layoutY="72.0" onAction="#cliclCombobox" prefWidth="150.0" />
       <Label layoutX="24.0" layoutY="211.0" text="下限：" />
       <Label layoutX="24.0" layoutY="251.0" text="上限：" />
@@ -39,7 +43,4 @@
       <Label layoutX="9.0" layoutY="383.0" text="终止：" />
       <DatePicker fx:id="dateend" layoutX="9.0" layoutY="405.0" prefHeight="23.0" prefWidth="170.0" />
    </children>
-   <!--<effect>
-      <ColorAdjust brightness="-0.3" contrast="0.6" hue="0.3" />
-   </effect>!-->
 </AnchorPane>

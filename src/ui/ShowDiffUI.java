@@ -1,4 +1,4 @@
-package application;
+package ui;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
-import comparatorFactoryPattern.FileNameComparator;
+import comparatorFactoryAndSingletonPattern.FileNameComparatorSingleton;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -15,15 +15,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import oodleOperate.MyFile;
 
-public class ShowDiff {
+public class ShowDiffUI {
 
 	public void display(HashSet<String> newFile,HashSet<String> deleteFile, 
 			HashSet<MyFile> FileNewInfo, HashSet<MyFile> FileOldInfo){
 		
 		List<MyFile> newInfoList = new ArrayList<>(FileNewInfo);
 		List<MyFile> oldInfoList = new ArrayList<>(FileOldInfo);
-		//随便按一种方式排序，确保遍历时一一对应
-		Comparator<MyFile> comparator = new FileNameComparator("ESC");
+		//按一种方式排序，显示修改的文件时能一一对应
+		Comparator<MyFile> comparator = FileNameComparatorSingleton.getSingleton("ESC");
 		Collections.sort(newInfoList,comparator);
 		Collections.sort(oldInfoList,comparator);
 		

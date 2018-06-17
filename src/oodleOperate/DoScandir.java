@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import application.MyController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import selectCriteriaDecoratorPattern.Decorator;
 import selectCriteriaDecoratorPattern.SelectCriteria;
+import ui.Controller;
 
 public class DoScandir {
 
@@ -44,12 +44,12 @@ public class DoScandir {
             //符合谓词
             if(SC.selectCriteria(f)){
                     if(!f.isDirectory()){
-                    	MyFile myFile = FileConversion.getMyFile(f);
+                    	MyFile myFile = FileConvert.getMyFile(f);
                     	fileList.add(myFile);
                     }
                     else//f.isDirectory 目录
                     {
-                    	MyDir myDir = FileConversion.getMyDir(f);
+                    	MyDir myDir = FileConvert.getMyDir(f);
                     	fileList.add(myDir);
                     }
             }
