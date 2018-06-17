@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
-import comparatorFactoryAndSingletonPattern.FileNameComparatorSingleton;
+import comparatorSingletonPattern.FileNameComparatorSingleton;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;

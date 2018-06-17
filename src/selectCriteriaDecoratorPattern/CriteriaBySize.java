@@ -3,21 +3,16 @@ package selectCriteriaDecoratorPattern;
 import java.io.File;
 
 import oodleOperate.MyFile;
-import ui.Controller;
 
 public class CriteriaBySize extends Decorator{
-
-	private SelectCriteria selectCriteria;
-	private String[] sizeArr;
 	
 	public CriteriaBySize(SelectCriteria selectCriteria, String[] arr) {
-		this.selectCriteria = selectCriteria;
-		this.sizeArr = arr;
+		super(selectCriteria, arr);
 	}
 
 	@Override
 	public boolean selectCriteria(File f){
-		
+		super.selectCriteria(f);
 		if(!selectCriteria.selectCriteria(f)){
 			return false;
 		}
@@ -28,15 +23,15 @@ public class CriteriaBySize extends Decorator{
 		String temp = MyFile.sizeConvertToString(f.length());
 		temp = temp.substring(0, temp.indexOf('K'));
 		long fsize = Long.parseLong(temp);
-		if(sizeArr[0] != null)
+		if(Arr[0] != null)
 		{
-			a = Long.parseLong(sizeArr[0]);
+			a = Long.parseLong(Arr[0]);
 		}else{
 			a = -1;
 		}
-		if(sizeArr[1] != null)
+		if(Arr[1] != null)
 		{
-			b = Long.parseLong(sizeArr[1]);
+			b = Long.parseLong(Arr[1]);
 		}else {
 			b = fsize + 1;
 		}

@@ -10,7 +10,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-import comparatorFactoryAndSingletonPattern.ComparatorFactory;
+import comparatorSingletonPattern.FileLastModifyTimeComparatorSingleton;
+import comparatorSingletonPattern.FileNameComparatorSingleton;
+import comparatorSingletonPattern.FileSizeComparatorSingleton;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,7 +45,6 @@ import templateMethodPattern.GetTotalSize;
 public class Controller implements Initializable {
 
 	private ObservableList<MyFile> tablelist = FXCollections.observableArrayList();
-	private ComparatorFactory comparatorFac = new ComparatorFactory();
 	private AbsTemplate absTemplate = new GetTotalSize();
 	//右键弹出 获取文件夹大小的按钮
 	private ContextMenu cm = null;
@@ -94,7 +95,7 @@ public class Controller implements Initializable {
 	// 初始化tableview的右键弹出菜单
 	private void initViewSizeMenu() {
 		cm = new ContextMenu();
-		menuItem = new MenuItem();
+		menuItem = new MenuItem("View Size");
 		cm.getItems().add(menuItem);
 	}
 
@@ -339,8 +340,28 @@ public class Controller implements Initializable {
 		Comparator<MyFile> comparator = null;
 		getTimeRange();
 		//排序方式
-		comparator = comparatorFac.getComparator(sortWayString);
-		
+		switch (sortWayString) {
+		case "按文件名升序":
+			comparator = FileNameComparatorSingleton.getSingleton("ESC");
+			break;
+		case "按文件名降序":
+			comparator = FileNameComparatorSingleton.getSingleton("DESC");
+			break;
+		case "按文件大小升序":
+			comparator = FileSizeComparatorSingleton.getSingleton("ESC");
+			break;
+		case "按文件大小降序":
+			comparator = FileSizeComparatorSingleton.getSingleton("DESC");
+			break;
+		case "按修改时间升序":
+			comparator = FileLastModifyTimeComparatorSingleton.getSingleton("ESC");
+			break;
+		case "按修改时间降序":
+			comparator = FileLastModifyTimeComparatorSingleton.getSingleton("DESC");
+			break;
+		default:
+			break;
+		}
 		//谓词设置
 		String[] strName = getFileTextName();
 		String[] timeArr = getTimeRange();

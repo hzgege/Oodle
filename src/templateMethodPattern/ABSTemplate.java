@@ -32,7 +32,6 @@ public abstract class AbsTemplate {
 			while (visitTime.get() > 0 || fileQueue.size() > 0) {
 				// 从BlockingQueue取出队首的对象,
 				// 如果在指定时间内,一旦有数据可取,则立即返回队列中的数据
-				// 否则直到时间超时还没有数据可取,返回失败。
 				pollAndAdd();
 			}
 			return getObject();

@@ -2,9 +2,19 @@ package selectCriteriaDecoratorPattern;
 
 import java.io.File;
 
-public abstract class Decorator implements SelectCriteria{
+public class Decorator implements SelectCriteria{
 
+	protected SelectCriteria selectCriteria;
+	protected String[] Arr;
+	
+	public Decorator(SelectCriteria selectCriteria, String[] arr) {
+		this.selectCriteria = selectCriteria;
+		this.Arr = arr;
+	}
+	
 	@Override
-	public abstract boolean selectCriteria(File f);
+	public boolean selectCriteria(File f) {
+		return true;
+	}
 
 }

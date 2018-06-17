@@ -1,4 +1,4 @@
-package comparatorFactoryAndSingletonPattern;
+package comparatorSingletonPattern;
 
 import java.util.Comparator;
 
@@ -7,7 +7,7 @@ import oodleOperate.MyFile;
 
 public class FileNameComparatorSingleton implements Comparator<MyFile>{
 	
-	private boolean flag = true;
+	private static boolean flag = true;
 	private static FileNameComparatorSingleton singleton = new FileNameComparatorSingleton(); 
 	
 	private FileNameComparatorSingleton() {
@@ -17,7 +17,9 @@ public class FileNameComparatorSingleton implements Comparator<MyFile>{
 	public static FileNameComparatorSingleton getSingleton(String sortway){
 		if(sortway == "DESC")
 		{
-			singleton.flag = false;
+			flag = false;
+		}else{
+			flag = true;
 		}
 		return singleton;
 	}

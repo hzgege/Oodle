@@ -15,8 +15,8 @@ import oodleOperate.MyFile;
 public class ReadandWriteProxy implements ProxyInterface{
 	
 	private String path;
-	WriteToFile writeToFile = new WriteToFile();
-	ReadFromFile readFromFile = new ReadFromFile();
+	private AbsReadandWrite writeToFile = new WriteToFile();
+	private AbsReadandWrite readFromFile = new ReadFromFile();
 	
 	public ReadandWriteProxy() {
 
