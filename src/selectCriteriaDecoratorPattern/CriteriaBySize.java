@@ -18,7 +18,7 @@ public class CriteriaBySize extends Decorator{
 		}
 		
 		if(f.isDirectory())
-			return true;
+			return false;
 		long a = 0, b = 0;
 		String temp = MyFile.sizeConvertToString(f.length());
 		temp = temp.substring(0, temp.indexOf('K'));
