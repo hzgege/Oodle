@@ -42,5 +42,9 @@
       <Label layoutX="9.0" layoutY="318.0" text="起始：" />
       <Label layoutX="9.0" layoutY="383.0" text="终止：" />
       <DatePicker fx:id="dateend" layoutX="9.0" layoutY="405.0" prefHeight="23.0" prefWidth="170.0" />
+      <Button id="clearAll" layoutX="111.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickClearAll" text="ClearAll" />
    </children>
+      <!--<effect>
+      <ColorAdjust brightness="-0.3" contrast="0.6" hue="0.3" />
+   </effect>!-->
 </AnchorPane>

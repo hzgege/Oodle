@@ -126,7 +126,7 @@ public class Controller implements Initializable {
 							nowDir.append("\\" + tempFile.getName());
 						String newDir = nowDir.toString();
 						currentDir.setText(newDir);
-						showAtTableView(newDir);
+						clickClearAll();
 					}
 				}
 				// 右键 查看大小
@@ -293,6 +293,16 @@ public class Controller implements Initializable {
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//清空后重新show
+	public void clickClearAll(){
+		filenametext.setText("");
+		kbfloor.setText("");
+		kbceiling.setText("");
+		datebegin.setValue(null);
+		dateend.setValue(null);
+		showAtTableView(currentDir.getText());
 	}
 
 	//获得文件名匹配值
