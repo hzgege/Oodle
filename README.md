@@ -33,7 +33,7 @@
 	1.4.2. jdk 1.8 以上
 
 # 类图
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E7%B1%BB%E5%9B%BE.png)
 
 # 类图描述
 
@@ -148,7 +148,7 @@
 
 ### 1.	单例模式
 	i.	涉及的类图
-	 ![Image text]()
+	 ![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png)
 	ii.	为什么使用
 	a)	因为此处是要返回一个排序比较器，无需每次更换排序方式就新建一个对象，浪费空间，所以使用单例模式，提高效率，保证对应的排序方式只有一个实例。
 	b)	此处只有三个对象，使用空间换时间的方法，无需每次访问都判断对象是否存在，而在类初始化时就生成对象。
@@ -159,7 +159,7 @@
 
 ### 2.	装饰器模式
 	i.	涉及的类图
-	 ![Image text]()
+	 ![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F.png)
 	ii.	为什么使用
 	a)	设置谓词，可以有文件名是否匹配字符串、文件大小是否在设定范围内、文件修改时间是否在设定范围内。通过装饰器模式，可以动态为谓词对象添加不同的功能。
 	b)	通过使用0~3种不同的装饰类，可以创造出不同组合，灵活性更高。
@@ -172,7 +172,7 @@
 
 ### 3.	模板方法模式
 	i.	涉及的类图
-	 ![Image text]()
+	 ![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png)
 	ii.	为什么使用
 	a)	这里是递归遍历文件树的时候使用的，因为两个类的遍历方法相同，区别在于所需要获取的对象是不同的，于是将其封装为一个模板方法，由子类实现具体细节，实现代码复用。
 	b)	对扩展方便，符合OCP
@@ -184,7 +184,7 @@
 
 ### 4.	策略模式
 	i.	涉及的类图
-	 ![Image text]()
+	 ![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.png)
 	ii.	为什么使用
 	对于需求中的日志模式和差异模式，两者不相互依赖，提供对两个算法的管理。符合OCP原则，增加策略时无需修改。
 	iii.	设计原则
@@ -192,9 +192,9 @@
 	iv.	坏处
 	a)	调用者需知道所有的策略算法，了解他们的区别，并决定使用哪一个策略。
 
-### 5.	代理模式()
+### 5.	代理模式
 	i.	涉及的类图
-	 ![Image text]()
+	 ![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.png)
 	ii.	为什么使用
 	a)	在进行序列化存储时，需检查路径是否存在，为了不违反存储类的单一职责，使用代理模式可以在进行存储操作的前后，加上一些必须的操作
 	b)	一定程度上在调用者和目标对象之间起到中介作用，起到保护目标对象的作用
@@ -206,17 +206,17 @@
 # 程序运行截圖
 
 ## 主界面
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E4%B8%BB%E7%95%8C%E9%9D%A2.png)
 
 ## 排序
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E6%8E%92%E5%BA%8F.png)
 
 ## 右键目录查看大小，双击进入目录，返回按钮返回
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E8%BF%94%E5%9B%9E.png)
 
 ## 谓词设置(输入文件名、文件大小范围、修改时间范围，ClearAll可以全清空)
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E8%B0%93%E8%AF%8D.png)
 
 ## 日志模式与差异模式
-	![Image text]()
-	![Image text]()
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E6%97%A5%E5%BF%97%E6%A8%A1%E5%BC%8F.png)
+	![Image text](https://github.com/hzgege/Oodle/blob/master/READMEIMG/%E5%B7%AE%E5%BC%82%E6%A8%A1%E5%BC%8F.png)
